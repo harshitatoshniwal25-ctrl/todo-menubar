@@ -194,14 +194,35 @@ extension View {
 /// Embed the OFL files in the bundle rather than fetching them at runtime.
 /// Anything in Resources/Fonts is registered before the first window is drawn.
 enum Fonts {
+    /// Where the fonts are, found by hand rather than through `Bundle.module`.
+    ///
+    /// SwiftPM's accessor looks only beside the executable's bundle and in the
+    /// absolute `.build` path of the Mac that compiled it, and crashes if
+    /// neither exists. In the .app the bundle sits in Contents/Resources —
+    /// the one place a signed bundle allows it — so on any other Mac the
+    /// accessor found nothing and the app died at launch. Missing fonts are not
+    /// worth a crash; the fallback faces in `type.families` cover them.
+    private static var resourceBundle: Bundle? {
+        let name = "ToDo_ToDo.bundle"
+        let candidates = [
+            Bundle.main.resourceURL?.appendingPathComponent(name),   // the .app
+            Bundle.main.bundleURL.appendingPathComponent(name),      // swift build / swift run
+        ]
+        return candidates.lazy.compactMap { $0 }.compactMap { Bundle(url: $0) }.first
+    }
+
     static func register() {
         // SwiftPM's `.process` flattens the resource folder, so the files land at
         // the bundle root rather than under Fonts/. Look in both, so this keeps
         // working if the rule ever changes to `.copy`.
         var urls: Set<URL> = []
+        guard let bundle = resourceBundle else {
+            FileHandle.standardError.write(Data("to do: no font bundle; using fallback faces\n".utf8))
+            return
+        }
         for ext in ["ttf", "otf", "ttc"] {
-            urls.formUnion(Bundle.module.urls(forResourcesWithExtension: ext, subdirectory: nil) ?? [])
-            urls.formUnion(Bundle.module.urls(forResourcesWithExtension: ext, subdirectory: "Fonts") ?? [])
+            urls.formUnion(bundle.urls(forResourcesWithExtension: ext, subdirectory: nil) ?? [])
+            urls.formUnion(bundle.urls(forResourcesWithExtension: ext, subdirectory: "Fonts") ?? [])
         }
 
         for url in urls {

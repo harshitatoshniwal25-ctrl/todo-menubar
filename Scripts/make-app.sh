@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 
 APP_NAME="to do"
 BUNDLE_ID="${BUNDLE_ID:-com.harshita.todo}"
-VERSION="0.1.0"
+VERSION="0.1.1"
 DEST="dist/${APP_NAME}.app"
 
 echo "building release…"
