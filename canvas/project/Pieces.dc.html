@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>to do — the pieces and their states</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="ds/todo/components/bundle.css">
+<script src="ds/todo/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&amp;family=Shantell+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: var(--font-ui); background: var(--surface-desk); }
+a { color: var(--pen-blue); } a:hover { color: var(--ink); }
+</style>
+</helmet>
+<div style="width: 880px; height: 420px; box-sizing: border-box; padding: 40px; background: var(--surface-desk); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px;">
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.04em; color: var(--chrome-ink-muted);">the glyph in the bar</div>
+    <div style="display: flex; gap: 16px;">
+      <sc-for list="{{triggers}}" as="t" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <div style="width: 80px; height: 24px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--surface-raised); border-radius: var(--radius-sm); color: var(--chrome-ink);">
+            <x-import component-from-global-scope="ToDo.MenubarTrigger" open="{{t.open}}" count="{{t.count}}" paper="{{paper}}" label="to do"></x-import>
+          </div>
+          <div style="font-size: 11px; line-height: 14px; font-weight: 500; color: var(--chrome-ink-muted);">{{t.caption}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.04em; color: var(--chrome-ink-muted);">a line</div>
+    <div style="background: var(--surface-note); border-radius: var(--radius-note); box-shadow: var(--shadow-note); padding: var(--space-3); display: flex; flex-direction: column;">
+      <x-import component-from-global-scope="ToDo.TodoItem" text="call the landlord back"></x-import>
+      <x-import component-from-global-scope="ToDo.TodoItem" text="hand in the moodboard"></x-import>
+      <x-import component-from-global-scope="ToDo.TodoItem" text="renew the passport" pinned="{{yes}}"></x-import>
+      <x-import component-from-global-scope="ToDo.TodoItem" text="pick up prints" done="{{yes}}"></x-import>
+      <x-import component-from-global-scope="ToDo.NewItemLine" placeholder="write a line" label="write a line"></x-import>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.04em; color: var(--chrome-ink-muted);">buttons</div>
+    <div style="background: var(--surface-note); border-radius: var(--radius-note); box-shadow: var(--shadow-note); padding: var(--space-3); display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <x-import component-from-global-scope="ToDo.Button" variant="primary">New note</x-import>
+        <x-import component-from-global-scope="ToDo.Button" variant="ghost">Pick paper</x-import>
+        <x-import component-from-global-scope="ToDo.Button" variant="danger">Clear done</x-import>
+        <x-import component-from-global-scope="ToDo.Button" variant="ghost" disabled="{{yes}}">Clear done</x-import>
+      </div>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <x-import component-from-global-scope="ToDo.Checkbox" label="an empty box"></x-import>
+        <x-import component-from-global-scope="ToDo.Checkbox" checked="{{yes}}" label="a ticked box"></x-import>
+        <x-import component-from-global-scope="ToDo.Checkbox" disabled="{{yes}}" label="a disabled box"></x-import>
+        <x-import component-from-global-scope="ToDo.CountBadge" count="{{three}}" paper="{{paper}}" noun="left"></x-import>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.04em; color: var(--chrome-ink-muted);">paper is the user&#39;s, never a status</div>
+    <x-import component-from-global-scope="ToDo.PaperSwatches" value="{{paper}}" on-change="{{onPaper}}"></x-import>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":880,"height":420}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { paper: 'paper-butter' };
+  }
+
+  renderVals() {
+    var self = this;
+    return {
+      yes: true,
+      one: 1,
+      three: 3,
+      paper: this.state.paper,
+      onPaper: function (p) { self.setState({ paper: p }); },
+      triggers: [
+        { open: false, count: 0, caption: 'idle' },
+        { open: false, count: 3, caption: '3 left' },
+        { open: true, count: 3, caption: 'panel down' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

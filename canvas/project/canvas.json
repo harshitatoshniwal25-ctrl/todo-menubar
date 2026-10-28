@@ -1,0 +1,86 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-21T10:34:53Z"
+  },
+  "title": "to do \u2014 menu bar app",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 400,
+      "h": 480,
+      "title": "Open \u00b7 a working list",
+      "is_interactive": true
+    },
+    "Empty.dc.html": {
+      "x": 480,
+      "y": 0,
+      "w": 400,
+      "h": 480,
+      "title": "Nothing here yet",
+      "is_interactive": true
+    },
+    "Paper.dc.html": {
+      "x": 960,
+      "y": 0,
+      "w": 400,
+      "h": 480,
+      "title": "Picking paper",
+      "is_interactive": true
+    },
+    "Night.dc.html": {
+      "x": 1440,
+      "y": 0,
+      "w": 400,
+      "h": 480,
+      "title": "Desk at night \u00b7 mid line",
+      "is_interactive": true
+    },
+    "Pieces.dc.html": {
+      "x": 0,
+      "y": 1000,
+      "w": 880,
+      "h": 420,
+      "title": "The pieces and their states",
+      "is_interactive": true
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Empty.dc.html",
+    "Paper.dc.html",
+    "Night.dc.html",
+    "Pieces.dc.html"
+  ],
+  "notes": {
+    "t1": {
+      "x": 0,
+      "y": -300,
+      "text": "to do \u2014 the panel",
+      "kind": "title1",
+      "maxW": 1840
+    },
+    "t2": {
+      "x": 0,
+      "y": 740,
+      "text": "the pieces",
+      "kind": "title1",
+      "maxW": 880
+    }
+  },
+  "designSystems": [
+    {
+      "title": "to do",
+      "namespace": "todo",
+      "artifact": "https://claude.ai/code/artifact/4998811f-33da-49ce-a803-afc59484484b",
+      "version": "1790246402-e9e2",
+      "copiedAt": "2026-09-24T10:45:00Z"
+    }
+  ]
+}

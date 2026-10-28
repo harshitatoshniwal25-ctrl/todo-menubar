@@ -1,0 +1,101 @@
+/* to do — token variables for the bundle, from the design system's tokens.json.
+   Two grounds: paper is lit in both themes, the desk is the part that flips. */
+
+:root {
+  /* --- The desk. The only tokens with a light and a dark value. --- */
+  --surface-desk: #eceae5;
+  --surface-raised: #fffefb;
+  --chrome-ink: #2e2a24;
+  --chrome-ink-muted: #665d4e;
+  --chrome-hairline: #2e2a2426;
+  --chrome-danger: #a8352c;
+  --tape: #e7e0cfd9;
+
+  /* --- Paper. A sticky note does not turn off at night. --- */
+  --paper-butter: #fdf6d9;
+  --paper-rose: #fbeaf0;
+  --paper-sky: #eaf1f9;
+  --paper-mint: #e9f4ec;
+  --paper-lilac: #f0ebf7;
+  --paper-chalk: #fcfbf8;
+  --surface-note: var(--paper-butter);
+  --surface-note-edge: #2e2a2414;
+  --paper-hover: #2e2a240d;
+
+  /* Each paper's own pen and highlighter; the note sets --tk-accent and
+     --tk-highlight from these. Paper is lit at night, so none of them flip. */
+  --accent-butter: #93792f;
+  --accent-rose: #b05a7d;
+  --accent-sky: #4b7ba8;
+  --accent-mint: #4f8464;
+  --accent-lilac: #7566a8;
+  --accent-chalk: #5470a3;
+  --highlight-butter: #f7cf5e;
+  --highlight-rose: #ffa8c6;
+  --highlight-sky: #8ccdf0;
+  --highlight-mint: #9ce29f;
+  --highlight-lilac: #c9aeff;
+  --highlight-chalk: #ffdf66;
+
+  /* --- Ink and pens, always on paper, so never themed. --- */
+  --ink: #2e2a24;
+  --ink-muted: #665d4e;
+  --ink-faint: #7f7560;
+  --pen-blue: #46639c;
+  --pen-red: #a8352c;
+  --pen-green: #30682b;
+  --marker-highlight: #ffdf66;
+  --on-highlight: #2e2a24;
+  --on-pen: #fffefb;
+  --hairline: #2e2a2426;
+  --focus-ring: var(--pen-blue);
+
+  --font-script: "Caveat", "Bradley Hand", cursive;
+  --font-hand: "Shantell Sans", "Bradley Hand", "Segoe Print", cursive;
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-line: 28px;
+
+  /* Nested: window 20 = note 12 + the 8px panel margin. */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-note: 12px;
+  --radius-lg: 20px;
+
+  --shadow-note: 0 1px 2px #2e2a241f, 0 10px 18px -12px #2e2a2459;
+  --shadow-lift: 0 14px 24px -12px #2e2a2473;
+  --shadow-popover: 0 18px 40px -12px #2e2a2466, 0 2px 6px #2e2a241f;
+  --shadow-none: none;
+
+  --tilt-left: -1.4deg;
+  --tilt-right: 1.2deg;
+  --tilt-flat: 0deg;
+}
+
+/* Desk at night — the desk goes dark around the note, and the note keeps glowing. */
+.night {
+  --surface-desk: #211f1c;
+  --surface-raised: #2a2724;
+  --chrome-ink: #f0ece3;
+  --chrome-ink-muted: #a9a294;
+  --chrome-hairline: #f0ece326;
+  --chrome-danger: #f08b7e;
+  --tape: #fffdf0b3;
+
+  --paper-butter: #f6efd2;
+  --paper-rose: #f4e3e9;
+  --paper-sky: #e3eaf2;
+  --paper-mint: #e2ede5;
+  --paper-lilac: #e9e4f0;
+  --paper-chalk: #f5f4f1;
+
+  --shadow-note: 0 1px 2px #00000073, 0 12px 20px -12px #000000b3;
+  --shadow-lift: 0 16px 26px -12px #000000d9;
+  --shadow-popover: 0 20px 44px -12px #000000e6, 0 2px 6px #00000099;
+}

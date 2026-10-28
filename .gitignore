@@ -1,0 +1,7 @@
+.build/
+.swiftpm/
+dist/
+*.xcuserdatad
+.DS_Store
+Sources/ToDo/Resources/Fonts/*.ttf
+Sources/ToDo/Resources/Fonts/*-OFL.txt
